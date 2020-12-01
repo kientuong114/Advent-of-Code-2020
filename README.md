@@ -8,27 +8,27 @@ Merry Christmas Everyone!
 
 | Day |      Solved Part 1?        | Solved Part 2? | Additional solution |
 | --- | --- | --- | --- |
-|  1  | :heavy_checkmark:   | :heavy_checkmark: | Yes, in C (why did I do this to myself) |
-|  2  | :X: | :X: | No |
-|  3  | :X: | :X: | No |
-|  4  | :X: | :X: | No |
-|  5  | :X: | :X: | No |
-|  6  | :X: | :X: | No |
-|  7  | :X: | :X: | No |
-|  8  | :X: | :X: | No |
-|  9  | :X: | :X: | No |
-|  10  | :X: | :X: | No |
-|  11  | :X: | :X: | No |
-|  12  | :X: | :X: | No |
-|  13  | :X: | :X: | No |
-|  14  | :X: | :X: | No |
-|  15  | :X: | :X: | No |
-|  16  | :X: | :X: | No |
-|  17  | :X: | :X: | No |
-|  18  | :X: | :X: | No |
-|  19  | :X: | :X: | No |
-|  20  | :X: | :X: | No |
-|  21  | :X: | :X: | No |
-|  22  | :X: | :X: | No |
-|  23  | :X: | :X: | No |
-|  24  | :X: | :X: | No |
+|  1  | :heavy_check_mark:   | :heavy_check_mark: | Yes, in C (why did I do this to myself) |
+|  2  | :x: | :x: | No |
+|  3  | :x: | :x: | No |
+|  4  | :x: | :x: | No |
+|  5  | :x: | :x: | No |
+|  6  | :x: | :x: | No |
+|  7  | :x: | :x: | No |
+|  8  | :x: | :x: | No |
+|  9  | :x: | :x: | No |
+|  10  | :x: | :x: | No |
+|  11  | :x: | :x: | No |
+|  12  | :x: | :x: | No |
+|  13  | :x: | :x: | No |
+|  14  | :x: | :x: | No |
+|  15  | :x: | :x: | No |
+|  16  | :x: | :x: | No |
+|  17  | :x: | :x: | No |
+|  18  | :x: | :x: | No |
+|  19  | :x: | :x: | No |
+|  20  | :x: | :x: | No |
+|  21  | :x: | :x: | No |
+|  22  | :x: | :x: | No |
+|  23  | :x: | :x: | No |
+|  24  | :x: | :x: | No |
