@@ -9,7 +9,7 @@ Merry Christmas Everyone!
 | Day |      Solved Part 1?        | Solved Part 2? | Additional solution |
 | --- | --- | --- | --- |
 |  1  | :heavy_check_mark:   | :heavy_check_mark: | Yes, in C (why did I do this to myself) |
-|  2  | :x: | :x: | No |
+|  2  | :heavy_check_mark: | :heavy_check_mark: | No(t yet) |
 |  3  | :x: | :x: | No |
 |  4  | :x: | :x: | No |
 |  5  | :x: | :x: | No |
