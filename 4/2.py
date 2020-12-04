@@ -8,8 +8,6 @@ def solution(inp):
         for pair in e:
             entry, val = pair.split(':')
             present.add(entry)
-            if entry == 'hgt' and val == '154':
-                import ipdb; ipdb.set_trace()
             if entry == 'byr':
                 if len(val) != 4:
                     break
@@ -60,4 +58,3 @@ if __name__ == "__main__":
     inp = [l.strip().replace('\n', ' ') for l in inp.split('\n\n')]
     inp = [l for l in inp if l]
     print(solution(inp))
-
