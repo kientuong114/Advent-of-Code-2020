@@ -9,7 +9,7 @@ def decoderow(r):
         if ch == 'F':
             top = (top + bot) // 2
         else:
-            bot = math.ceil((top + bot) / 2)
+            bot = (top + bot) // 2 + 1
     assert(top == bot)
     return top
 
@@ -21,7 +21,7 @@ def decodecol(r):
         if ch == 'L':
             top = (top + bot) // 2
         else:
-            bot = math.ceil((top + bot) / 2)
+            bot = (top + bot) // 2 + 1
     assert(top == bot)
     return top
 
@@ -42,6 +42,6 @@ if __name__ == "__main__":
         inp = f.readlines()
     inp = [l.strip() for l in inp if l]
     print(f"old solution: {solution(inp)}")
-    print("time for 10k runs:", timeit.timeit('solution(inp)', setup="from __main__ import solution, inp", number=100000))
+    print("time for 10k runs:", timeit.timeit('solution(inp)', setup="from __main__ import solution, inp", number=10000))
     print(f"one liner: {oneliner(inp)}")
-    print("time for 10k runs:", timeit.timeit('oneliner(inp)', setup="from __main__ import oneliner, inp", number=100000))
+    print("time for 10k runs:", timeit.timeit('oneliner(inp)', setup="from __main__ import oneliner, inp", number=10000))
