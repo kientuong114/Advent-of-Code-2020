@@ -1,54 +1,41 @@
 import re
 
+def height(h):
+    val, unit = h[:-2], h[-2:]
+    if unit == 'cm':
+        return 150 <= int(val) <= 193
+    elif unit == 'in':
+        return 59 <= int(val) <= 76
+    else:
+        return False
+
+color_re = re.compile(r'#[a-f0-9]{6}')
+pid_re = re.compile(r'[0-9]{9}')
+
+validate = {
+    'byr': lambda x: 1920 <= int(x) <= 2002,
+    'iyr': lambda x: 2010 <= int(x) <= 2020,
+    'eyr': lambda x: 2020 <= int(x) <= 2030,
+    'hgt': lambda x: height(x),
+    'hcl': lambda x: True if color_re.fullmatch(x) else False,
+    'ecl': lambda x: x in ('amb', 'blu', 'brn', 'gry', 'grn', 'hzl', 'oth'),
+    'pid': lambda x: True if pid_re.fullmatch(x) else False,
+    'cid': lambda x: True
+}
+
 def solution(inp):
     counter = 0
-    for e in inp:
-        present = set()
-        e = e.split(' ')
-        for pair in e:
-            entry, val = pair.split(':')
-            present.add(entry)
-            if entry == 'byr':
-                if len(val) != 4:
-                    break
-                if not 1920 <= int(val) <= 2002:
-                    break
-            elif entry == 'iyr':
-                if len(val) != 4:
-                    break
-                if not 2010 <= int(val) <= 2020:
-                    break
-            elif entry == 'eyr':
-                if len(val) != 4:
-                    break
-                if not 2020 <= int(val) <= 2030:
-                    break
-            elif entry == 'hgt':
-                if val[-2:] == 'cm':
-                    if not 150 <= int(val[:-2]) <= 193:
-                        break
-                elif val[-2:] == 'in':
-                    if not 59 <= int(val[:-2]) <= 76:
-                        break
-                else:
-                    break
-            elif entry == 'hcl':
-                if len(val) != 7:
-                    break
-                if not re.match('#[a-f0-9]{6}', val):
-                    break
-            elif entry == 'ecl':
-                if val != 'amb' and val != 'blu' and val != 'brn' and val != 'gry' and val != 'grn' and val != 'hzl' and val != 'oth':
-                    break
-            elif entry == 'pid':
-                if len(val) != 9:
-                    break
-                if not re.match('\d{9}', val):
-                    break
+    for entry in inp:
+        tags = set()
+        entry = entry.split(' ')
+        for pair in entry:
+            tag, val = pair.split(':')
+            tags.add(tag)
+            if not validate[tag](val):
+                break
         else:
-            if 'byr' not in present or 'iyr' not in present or 'eyr' not in present or 'hgt' not in present or 'hcl' not in present or 'ecl' not in present or 'pid' not in present:
-                pass
-            else:
+            tags.add('cid')
+            if len(tags) == 8:
                 counter += 1
     return counter
 

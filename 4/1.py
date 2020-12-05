@@ -1,15 +1,13 @@
 def solution(inp):
     counter = 0
-    for e in inp:
-        present = set()
-        e = e.split(' ')
-        for pair in e:
-            entry, val = pair.split(':')
-            if entry not in present:
-                present.add(entry)
-        if 'byr' not in present or 'iyr' not in present or 'eyr' not in present or 'hgt' not in present or 'hcl' not in present or 'ecl' not in present or 'pid' not in present:
-            pass
-        else:
+    for entry in inp:
+        tags = set()
+        entry = entry.split(' ')
+        for pair in entry:
+            tag, _ = pair.split(':')
+            tags.add(tag)
+        tags.add('cid')                 #Adds if not already present, otherwise does nothing
+        if len(tags) == 8:
             counter += 1
     return counter
 

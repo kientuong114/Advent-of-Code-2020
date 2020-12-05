@@ -11,8 +11,8 @@ Merry Christmas Everyone!
 |  1  | :heavy_check_mark:   | :heavy_check_mark: | Yes, in C (why did I do this to myself) | |
 |  2  | :heavy_check_mark: | :heavy_check_mark: | No(t yet) | |
 |  3  | :heavy_check_mark: | :heavy_check_mark: | No | |
-|  4  | :heavy_check_mark: | :heavy_check_mark: | No | One of the worst pieces of code I've ever written |
-|  5  | :x: | :x: | No | |
+|  4  | :heavy_check_mark: | :heavy_check_mark: | No | ~~One of the worst pieces of code I've ever written~~ Rewritten it better :D |
+|  5  | :heavy_check_mark: | :heavy_check_mark: | No | |
 |  6  | :x: | :x: | No | |
 |  7  | :x: | :x: | No | |
 |  8  | :x: | :x: | No | |
