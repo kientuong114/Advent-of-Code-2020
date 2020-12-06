@@ -13,7 +13,7 @@ Merry Christmas Everyone!
 |  3  | :heavy_check_mark: | :heavy_check_mark: | No | |
 |  4  | :heavy_check_mark: | :heavy_check_mark: | No | ~~One of the worst pieces of code I've ever written~~ Rewritten it better :D |
 |  5  | :heavy_check_mark: | :heavy_check_mark: | No | |
-|  6  | :x: | :x: | No | |
+|  6  | :heavy_check_mark: | :heavy_check_mark: | No | |
 |  7  | :x: | :x: | No | |
 |  8  | :x: | :x: | No | |
 |  9  | :x: | :x: | No | |
