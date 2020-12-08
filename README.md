@@ -1,8 +1,8 @@
-# Solutions for Advent of Code 2020
+# :christmas_tree::gift::christmas_tree: Solutions for Advent of Code 2020 :christmas_tree::gift::christmas_tree:
 
 Solutions mostly in Python, sometimes rewritten in a random language if I feel like doing it.
 
-Merry Christmas Everyone!
+Merry Christmas Everyone! :christmas_tree:
 
 ## Solves
 
