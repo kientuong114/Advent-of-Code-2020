@@ -9,6 +9,8 @@ This is an implementation of the Bootcode interpreter for Day 8 (and maybe beyon
 To use the interpreter, just import the `BootcodeMachine` object and run it:
 
 ```python
+from bootcode.machine import BootcodeMachine
+
 program = [
     'nop +0',
     'acc +1',
