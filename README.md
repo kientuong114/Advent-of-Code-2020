@@ -16,7 +16,7 @@ Merry Christmas Everyone! :christmas_tree:
 |  6  | :heavy_check_mark: | :heavy_check_mark: | Yes, in Java 11 | |
 |  7  | :heavy_check_mark: | :heavy_check_mark: | No | |
 |  8  | :heavy_check_mark: | :heavy_check_mark: | No | Bootcode Machine implementation is in `bootcode/`|
-|  9  | :x: | :x: | No | |
+|  9  | :heavy_check_mark: | :heavy_check_mark: | No | |
 |  10  | :x: | :x: | No | |
 |  11  | :x: | :x: | No | |
 |  12  | :x: | :x: | No | |
