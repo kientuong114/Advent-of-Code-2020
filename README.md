@@ -20,7 +20,7 @@ Merry Christmas Everyone! :christmas_tree:
 |  10  | :heavy_check_mark: | :heavy_check_mark: | No | |
 |  11  | :heavy_check_mark: | :heavy_check_mark: | No | |
 |  12  | :heavy_check_mark: | :heavy_check_mark: | No | |
-|  13  | :x: | :x: | No | |
+|  13  | :heavy_check_mark: | :heavy_check_mark: | No | |
 |  14  | :x: | :x: | No | |
 |  15  | :x: | :x: | No | |
 |  16  | :x: | :x: | No | |
