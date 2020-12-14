@@ -1,4 +1,5 @@
 import math
+#from sage.all import *
 
 def solution(inp):
     _ = int(inp[0])
@@ -15,8 +16,14 @@ def solution(inp):
             i += 1
     return curr_time
 
+def oneliner(inp): #This is kinda cheating lul
+    #from sage.arith.misc import CRT
+    #Uncomment the line above and the line on the top to import sage
+    return lambda x: CRT(list(x[0]), list(x[1]))(list(zip(*[(-x, int(y)) for x, y in enumerate(inp[1].split(',')) if y != 'x'])))
+
 if __name__ == "__main__":
     with open('13.in') as f:
         inp = f.readlines()
     inp = [l.strip() for l in inp]
     print(solution(inp))
+    print(oneliner(inp))
