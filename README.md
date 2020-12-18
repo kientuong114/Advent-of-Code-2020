@@ -25,7 +25,7 @@ Merry Christmas Everyone! :christmas_tree:
 |  15  | :heavy_check_mark: | :heavy_check_mark: | No | |
 |  16  | :heavy_check_mark: | :heavy_check_mark: | No | |
 |  17  | :heavy_check_mark: | :heavy_check_mark: | No | |
-|  18  | :x: | :x: | No | |
+|  18  | :heavy_check_mark: | :heavy_check_mark: | No | Provided both the original solution (conversion to RPN and RPN eval) and Shunting-yard |
 |  19  | :x: | :x: | No | |
 |  20  | :x: | :x: | No | |
 |  21  | :x: | :x: | No | |
