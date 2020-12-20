@@ -1,0 +1,344 @@
+from operator import itemgetter
+from collections import Counter
+import re
+
+TILE_HEIGHT = 10 - 2
+
+d = {}
+
+opp = {
+    'T': 'B',
+    'L': 'R',
+    'R': 'L',
+    'B': 'T'
+}
+
+nextdir = ['T', 'R', 'B', 'L']
+
+def get_dir(currdir, flipv, fliph, rot):
+    print(currdir, flipv, fliph, rot)
+    if fliph and flipv:
+        currdir = opp[currdir]
+    else:
+        if currdir in ('L', 'R') and fliph:
+            currdir = opp[currdir]
+        if flipv:
+            currdir = opp[currdir]
+    return nextdir[(nextdir.index(currdir) + rot) % 4]
+
+def strip_rotate_flip(tile, flipv, fliph, rot):
+    print(tile, flipv, fliph, rot)
+    tile = tile['tile']
+    tile = [l[1:-1] for l in tile[1:-1]]
+    if flipv:
+        tile = list(reversed(tile))
+    if fliph:
+        tile = [''.join(reversed(l)) for l in tile]
+    for _ in range(rot):
+        tile = [''.join(reversed(l)) for l in zip(*tile)]
+    return tile
+
+def rotate_flip(img, flip, rot):
+    if flip:
+        img = list(reversed(img))
+    for _ in range(rot):
+        img = [''.join(reversed(l)) for l in zip(*img)]
+    return img
+
+def yield_rotation_flips(tile):
+    orig = tile
+    for rot in range(4):
+        for flip in (False, True):
+            tile = orig
+            if flip:
+                tile = [''.join(reversed(l)) for l in tile]
+            for _ in range(rot):
+                tile = [''.join(reversed(l)) for l in zip(*tile)]
+            yield tile
+
+def solution(inp):
+    global d
+    for til in inp:
+        til = til.strip().split('\n')
+        num, tile = til[0], til[1:]
+        num = int(num.split(' ')[1].strip(':'))
+        d[num] = {
+            'tile': tile,
+            'T': tuple(tile[0]),
+            'B': tuple(tile[-1] if tile[-1] else tile[-2]),
+            'R': tuple(l[-1] for l in tile if l),
+            'L': tuple(l[0] for l in tile if l)
+        }
+    for n, til in d.items():
+        for nn, tt in d.items():
+            if n == nn:
+                continue
+            for direc in ('T', 'B', 'L', 'R'):
+                if til[direc] == tt['T']:
+                    d[n]['N'+direc] = (nn, 'T', True)
+                elif til[direc] == tt['B']:
+                    d[n]['N'+direc] = (nn, 'B', True)
+                elif til[direc] == tt['L']:
+                    d[n]['N'+direc] = (nn, 'L', True)
+                elif til[direc] == tt['R']:
+                    d[n]['N'+direc] = (nn, 'R', True)
+                elif tuple(reversed(til[direc])) == tt['T']:
+                    d[n]['N'+direc] = (nn, 'T', False)
+                elif tuple(reversed(til[direc])) == tt['B']:
+                    d[n]['N'+direc] = (nn, 'B', False)
+                elif tuple(reversed(til[direc])) == tt['L']:
+                    d[n]['N'+direc] = (nn, 'L', False)
+                elif tuple(reversed(til[direc])) == tt['R']:
+                    d[n]['N'+direc] = (nn, 'R', False)
+    corners = set()
+    for n, til in d.items():
+        if 'NL' in til and 'NR' not in til and 'NB' in til and 'NT' not in til:
+            corners.add(n)
+        if 'NL' not in til and 'NR' in til and 'NB' in til and not 'NT' in til:
+            corners.add(n)
+        if 'NL' in til and 'NR' not in til and not 'NB' in til and 'NT' in til:
+            corners.add(n)
+        if 'NL' not in til and 'NR' in til and not 'NB' in til and 'NT' in til:
+            corners.add(n)
+    image_tiles = {}
+    for c in corners:
+        if 'NR' in d[c] and 'NB' in d[c]:
+            start = c
+            #flipv, fliph, rot
+            #image_tiles[(0,0)] = (start, False, False, 0)
+            image_tiles[(0,0)] = d[start]['tile']
+            break
+    curr = image_tiles[(0, 0)]
+    curr_up = image_tiles[(0,0)]
+    curr_num = start
+    curr_num_up = start
+    prev_curr = 0
+
+    for y in range(12):
+        for x in range(1, 12):
+            print(x, y, "Looking adj for")
+            for l in curr:
+                print(l)
+            for num, adj in d.items():
+                if num == curr_num or num == prev_curr:
+                    continue
+                tr = yield_rotation_flips(adj['tile'])
+                found = False
+                for a in tr:
+                    if num == 2749 and curr_num == 1823:
+                        print(''.join(l[0] for l in a), ''.join(l[-1] for l in curr))
+                    if tuple(l[0] for l in a) == tuple(l[-1] for l in curr):
+                        image_tiles[(x, y)] = a
+                        prev_curr = curr_num
+                        curr = a
+                        curr_num = num
+                        found = True
+                        break
+                if found:
+                    break
+            else:
+                print(image_tiles)
+                print(d[curr_num])
+                print(curr_num, x)
+                print("AAAAA")
+                return
+        print('new row')
+        for num, adj in d.items():
+            if num == curr_num_up:
+                continue
+            tr = yield_rotation_flips(adj['tile'])
+            found = False
+            for a in tr:
+                if a[0] == curr_up[-1]:
+                    image_tiles[(0, y)] = a
+                    curr = a
+                    curr_up = a
+                    curr_num_up = num
+                    found = True
+                    break
+            if found:
+                break
+        else:
+            print("BBBBB")
+            return
+        print("newly update curr")
+        for l in curr:
+            print(l)
+
+
+    """
+    flipv = False
+    fliph = False
+    curr_dir = 'B'
+    rot = 0
+    while True: #put first element of each row
+        nn, side, flip = d[curr]['N'+curr_dir]
+        if side == 'L' and not flip:
+            if curr_dir == 'B':
+            rot += 1
+            rot %= 4
+            flipv ^= False
+            fliph ^= True
+        if side == 'R' and not flip:
+            rot += 3
+            rot %= 4
+            fliph ^= False
+            flipv ^= False
+        if side == 'T' and not flip:
+            rot = 0
+            fliph ^= False
+            flipv ^= False
+        if side == 'B' and not flip:
+            rot = 0
+            fliph ^= False
+            flipv ^= True
+        if side == 'L' and flip:
+            rot += 1
+            rot %= 4
+            fliph ^= False
+            flipv ^= False
+        if side == 'R' and flip:
+            rot += 1
+            rot %= 4
+            fliph ^= True
+            flipv ^= False
+        if side == 'T' and flip:
+            rot = 0
+            fliph ^= True
+            flipv ^= False
+        if side == 'B' and flip:
+            rot += 2
+            rot %= 4
+            fliph ^= False
+            flipv ^= False
+
+        curr_dir = opp[side]
+        image_tiles[(0, idx)] = (nn, flipv, fliph, rot)
+        idx += 1
+        curr = nn
+        if nn in corners:
+            break
+    print(image_tiles)
+
+    row = 0
+    flipv = False
+    fliph = False
+    for x in range(12):
+        curr, flipv, fliph, rot = image_tiles[(0, row)]
+        print('ROW', row)
+        idx = 1
+        curr_dir = get_dir('R', flipv, fliph, rot)
+        for y in range(11):
+            print(y, curr, d[curr], flipv, fliph, curr_dir)
+            nn, side, flip = d[curr]['N'+curr_dir]
+            if side == 'L' and not flip:
+                rot = 0
+                flipv = False
+                fliph = False
+            if side == 'R' and not flip:
+                rot = 0
+                fliph = True
+                flipv = False
+            if side == 'T' and not flip:
+                rot = 1
+                fliph = False
+                flipv = True
+            if side == 'B' and not flip:
+                rot = 1
+                fliph = False
+                flipv = False
+            if side == 'L' and flip:
+                rot = 0
+                fliph = False
+                flipv = True
+            if side == 'R' and flip:
+                rot = 2
+                fliph = False
+                flipv = False
+            if side == 'T' and flip:
+                rot = 3
+                fliph = False
+                flipv = False
+            if side == 'B' and flip:
+                rot = 1
+                fliph = False
+                flipv = False
+
+            curr_dir = opp[side]
+            image_tiles[(idx, row)] = (nn, flipv, fliph, rot)
+            idx += 1
+            curr = nn
+            if nn in corners:
+                break
+        print(image_tiles)
+        row += 1
+    """
+
+    width = max(image_tiles.keys(), key=itemgetter(0))[0] + 1
+    height = max(image_tiles.keys(), key=itemgetter(1))[1] + 1
+
+    final_img = []
+    print(image_tiles)
+
+    for r in range(height):
+        #nn , flipv, fliph, rot = image_tiles[(0, r)]
+        final_img += image_tiles[(0, r)]
+        for c in range(1, width):
+            #tt , flipv_2, fliph_2, rot_2 = image_tiles[(c, r)]
+            tile = image_tiles[(c,r)]
+            #tile = strip_rotate_flip(d[tt], flipv_2, fliph_2, rot_2)
+            for i in range(TILE_HEIGHT):
+                final_img[TILE_HEIGHT*r + i] += tile[i]
+
+    top_line = re.compile('..................#.')
+    mid_line = re.compile('#....##....##....###')
+    bot_line = re.compile('.#..#..#..#..#..#...')
+
+    monster_count = 15
+
+    n_monsters = 0
+
+    for l in final_img:
+        print(l)
+    return
+
+    for rot in range(4):
+        for flip in (True, False):
+            img = rotate_flip(final_img, flip, rot)
+            print("NEW IMG", rot, flip)
+            for l in img:
+                print(l)
+            for row1, row2, row3 in zip(img, img[1:], img[2:]):
+                starts_top = set()
+                starts_mid = set()
+                starts_bot = set()
+                for i in range(len(row1)):
+                    ss = top_line.search(row1, i)
+                    if ss:
+                        starts_top.add(ss.start(0))
+                for i in range(len(row2)):
+                    ss = mid_line.search(row2, i)
+                    if ss:
+                        starts_mid.add(ss.start(0))
+                for i in range(len(row3)):
+                    ss = bot_line.search(row3, i)
+                    if ss:
+                        starts_bot.add(ss.start(0))
+
+                print(starts_top, starts_mid, starts_bot)
+                n_monsters += len(starts_top.intersection(starts_mid).intersection(starts_bot))
+
+    hash_count = 0
+    for l in final_img:
+        hash_count += Counter(l)['#']
+    return hash_count - n_monsters * 15
+
+if __name__ == "__main__":
+    with open('20.in') as f:
+        inp = f.read().split('\n\n')
+    #with open('20.in') as f:
+        #inp = f.read().strip().split('\n\n')
+    #inp = [l.strip() for l in inp]
+    #inp = [int(l.strip()) for l in inp]
+    #inp = [l.strip().split(':') for l in inp]
+    print(solution(inp))

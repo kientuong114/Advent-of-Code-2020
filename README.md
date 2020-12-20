@@ -27,7 +27,7 @@ Merry Christmas Everyone! :christmas_tree:
 |  17  | :heavy_check_mark: | :heavy_check_mark: | No | |
 |  18  | :heavy_check_mark: | :heavy_check_mark: | No | Provided both the original solution (conversion to RPN and RPN eval) and Shunting-yard |
 |  19  | :heavy_check_mark: | :heavy_check_mark: | No | |
-|  20  | :x: | :x: | No | |
+|  20  | :heavy_check_mark: | :heavy_check_mark: | No | 2.py.crap is the first (non-working) attempt. After 6 hours I decided to rewrite it almost from scratch|
 |  21  | :x: | :x: | No | |
 |  22  | :x: | :x: | No | |
 |  23  | :x: | :x: | No | |
