@@ -30,5 +30,6 @@ Merry Christmas Everyone! :christmas_tree:
 |  20  | :heavy_check_mark: | :heavy_check_mark: | No | 2.py.crap is the first (non-working) attempt. After 6 hours I decided to rewrite it almost from scratch|
 |  21  | :heavy_check_mark: | :heavy_check_mark: | No | |
 |  22  | :heavy_check_mark: | :heavy_check_mark: | No | |
-|  23  | :x: | :x: | No | |
+|  23  | :heavy_check_mark: | :heavy_check_mark: | No | |
 |  24  | :x: | :x: | No | |
+|  25  | :x: | :x: | No | |
