@@ -31,5 +31,5 @@ Merry Christmas Everyone! :christmas_tree:
 |  21  | :heavy_check_mark: | :heavy_check_mark: | No | |
 |  22  | :heavy_check_mark: | :heavy_check_mark: | No | |
 |  23  | :heavy_check_mark: | :heavy_check_mark: | No | |
-|  24  | :x: | :x: | No | |
+|  24  | :heavy_check_mark: | :heavy_check_mark: | No | |
 |  25  | :x: | :x: | No | |
